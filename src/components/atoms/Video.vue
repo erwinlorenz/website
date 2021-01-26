@@ -49,15 +49,18 @@ export default {
   data () {
     return { ready: false, currentSource: null };
   },
-  mounted () {
-    // eslint-disable-next-line scanjs-rules/call_addEventListener
-    global.addEventListener('resize', this.onResize);
-    this.changeSource();
+  created () {
+    this.currentSource = this.sources[0].src;
   },
-  destroyed () {
-    // eslint-disable-next-line scanjs-rules/call_addEventListener
-    global.removeEventListener('resize', this.onResize);
-  },
+  // mounted () {
+  //   // eslint-disable-next-line scanjs-rules/call_addEventListener
+  //   global.addEventListener('resize', this.onResize);
+  //   this.changeSource();
+  // },
+  // destroyed () {
+  //   // eslint-disable-next-line scanjs-rules/call_addEventListener
+  //   global.removeEventListener('resize', this.onResize);
+  // },
   methods: {
     onCanplay () {
       if (this.autoplay) {

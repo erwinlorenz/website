@@ -33,8 +33,8 @@ export default {
       contacts: {
         items: [
           { icon: 'mail', url: 'mailto: erwin.lorenz@gmail.com', title: 'Mail' },
-          { icon: 'linkedIn', url: 'https://www.linkedin.com/in/erwin-lorenz-3a2323a2/', target: '_blank', title: 'LinkedIn' },
-          { icon: 'xing', url: 'https://www.xing.com/profile/Erwin_Lorenz/', target: '_blank', title: 'Xing' }
+          { icon: 'linkedIn', url: 'https://www.linkedin.com/in/erwin-lorenz-3a2323a2/', target: '_blank', title: 'LinkedIn', rel: 'noreferrer' },
+          { icon: 'xing', url: 'https://www.xing.com/profile/Erwin_Lorenz/', target: '_blank', title: 'Xing', rel: 'noreferrer' }
         ]
       },
       video: {
