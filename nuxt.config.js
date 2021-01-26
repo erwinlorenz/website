@@ -16,7 +16,15 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     ['@nuxtjs/pwa', {
-
+      workbox: {
+        cachingExtensions: '@/workbox/workbox-range-request.js',
+        runtimeCaching: [
+          {
+            urlPattern: /\/.*/,
+            handler: 'networkFirst'
+          }
+        ]
+      }
     }]
   ],
 
@@ -106,7 +114,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Erwin Lorenz - Art Director' },
 
       { hid: 'description', name: 'description', content: 'Erwin Lorenz - Art Director' },
       { hid: 'og:site_name', property: 'og:site_name', content: 'Erwin Lorenz - Art Director' },

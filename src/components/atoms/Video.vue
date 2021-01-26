@@ -7,6 +7,7 @@
     :poster="poster"
     :src="currentSource"
     :muted="muted"
+    @canplay="onCanplay"
   />
 </template>
 
@@ -52,24 +53,25 @@ export default {
     // eslint-disable-next-line scanjs-rules/call_addEventListener
     global.addEventListener('resize', this.onResize);
     this.changeSource();
-
-    if (this.autoplay) {
-    // eslint-disable-next-line scanjs-rules/call_setTimeout
-      global.setTimeout(() => {
-        this.$refs.video.play();
-        global.requestAnimationFrame(() => {
-          this.ready = true;
-        });
-      }, 300);
-    } else {
-      this.ready = true;
-    }
   },
   destroyed () {
     // eslint-disable-next-line scanjs-rules/call_addEventListener
     global.removeEventListener('resize', this.onResize);
   },
   methods: {
+    onCanplay () {
+      if (this.autoplay) {
+        // eslint-disable-next-line scanjs-rules/call_setTimeout
+        global.setTimeout(() => {
+          this.$refs.video.play();
+          global.requestAnimationFrame(() => {
+            this.ready = true;
+          });
+        }, 300);
+      } else {
+        this.ready = true;
+      }
+    },
     changeSource () {
       this.currentSource = this.sources.find(source => global.matchMedia(source.media || 'all').matches).src;
     },

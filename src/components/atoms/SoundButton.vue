@@ -1,5 +1,5 @@
 <template>
-  <button :class="{'js--muted': value}" @click="onClick">
+  <button aria-label="Mute Button" :class="{'js--muted': value}" @click="onClick">
     <svg-sound />
   </button>
 </template>

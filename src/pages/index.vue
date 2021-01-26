@@ -32,9 +32,9 @@ export default {
       },
       contacts: {
         items: [
-          { icon: 'mail', url: 'mailto: erwin.lorenz@gmail.com' },
-          { icon: 'linkedIn', url: 'https://www.linkedin.com/in/erwin-lorenz-3a2323a2/' },
-          { icon: 'xing', url: 'https://www.xing.com/profile/Erwin_Lorenz/' }
+          { icon: 'mail', url: 'mailto: erwin.lorenz@gmail.com', title: 'Mail' },
+          { icon: 'linkedIn', url: 'https://www.linkedin.com/in/erwin-lorenz-3a2323a2/', target: '_blank', title: 'LinkedIn' },
+          { icon: 'xing', url: 'https://www.xing.com/profile/Erwin_Lorenz/', target: '_blank', title: 'Xing' }
         ]
       },
       video: {
@@ -45,13 +45,21 @@ export default {
             src: require('@/assets/videos/210116_Showreel_webseite_EL.mp4')
           }
         ],
-        poster: require('@/assets/videos/210116_Showreel_webseite_EL_Standbild.jpg')
+        poster: null // require('@/assets/videos/210116_Showreel_webseite_EL_Standbild.jpg')
       }
     };
   },
   data () {
     return {
       videoMuted: true
+    };
+  },
+
+  head () {
+    return {
+      link: [
+        // { rel: 'preload', type: 'image/jpeg', href: require('@/assets/videos/210116_Showreel_webseite_EL_Standbild.jpg') }
+      ]
     };
   }
 };

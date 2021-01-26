@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li v-for="(item, index) in items" :key="index">
-      <a :href="item.url"><component :is="getIcon(item.icon)" /></a>
+      <a :title="item.title" :target="item.target" :href="item.url"><component :is="getIcon(item.icon)" /></a>
     </li>
   </ul>
 </template>
