@@ -107,8 +107,8 @@ export default {
       { hid: 'description', name: 'description', content: '' },
 
       { hid: 'description', name: 'description', content: 'Erwin Lorenz - Art Director' },
-      { hid: 'og:site_name', property: 'og:site_name', content: 'Grabarz & Partner' },
-      { hid: 'og:title', property: 'og:title', content: 'Grabarz & Partner | Creating emotional impact.' },
+      { hid: 'og:site_name', property: 'og:site_name', content: 'Erwin Lorenz - Art Director' },
+      { hid: 'og:title', property: 'og:title', content: 'Erwin Lorenz - Art Director' },
       { hid: 'og:description', property: 'og:description', content: 'Erwin Lorenz - Art Director' },
       { hid: 'og:url', property: 'og:url', content: getWebsiteHost() },
       { hid: 'og:image', property: 'og:image', content: `${getWebsiteHost().replace('https', 'http')}/sharing.jpg` },
