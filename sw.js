@@ -1,4 +1,4 @@
-const options = {"workboxURL":"https://cdn.jsdelivr.net/npm/workbox-cdn@5.1.4/workbox/workbox-sw.js","importScripts":[],"config":{"debug":false},"cacheOptions":{"cacheId":"website-prod","directoryIndex":"/","revision":"SGIdQTlcgprr"},"clientsClaim":true,"skipWaiting":true,"cleanupOutdatedCaches":true,"offlineAnalytics":false,"preCaching":[{"revision":"SGIdQTlcgprr","url":"/?standalone=true"}],"runtimeCaching":[{"urlPattern":"/_nuxt/","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/","handler":"NetworkFirst","method":"GET","strategyPlugins":[]}],"offlinePage":null,"pagesURLPattern":"/","offlineStrategy":"NetworkFirst"}
+const options = {"workboxURL":"https://cdn.jsdelivr.net/npm/workbox-cdn@5.1.4/workbox/workbox-sw.js","importScripts":[],"config":{"debug":false},"cacheOptions":{"cacheId":"website-prod","directoryIndex":"/","revision":"iqKALDzbOlf3"},"clientsClaim":true,"skipWaiting":true,"cleanupOutdatedCaches":true,"offlineAnalytics":false,"preCaching":[{"revision":"iqKALDzbOlf3","url":"/?standalone=true"}],"runtimeCaching":[{"urlPattern":{},"handler":"NetworkFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/_nuxt/","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/","handler":"NetworkFirst","method":"GET","strategyPlugins":[]}],"offlinePage":null,"pagesURLPattern":"/","offlineStrategy":"NetworkFirst"}
 
 importScripts(...[options.workboxURL, ...options.importScripts])
 
@@ -106,7 +106,16 @@ function workboxExtensions(workbox, options) {
 }
 
 function cachingExtensions(workbox, options) {
-  
+  /* global workbox */
+workbox.routing.registerRoute(
+  /.*\.(mp4|webm)/,
+  new workbox.strategies.CacheFirst({
+    plugins: [
+      new workbox.rangeRequests.RangeRequestsPlugin()
+    ]
+  }),
+  'GET'
+);
 }
 
 function routingExtensions(workbox, options) {
