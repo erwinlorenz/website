@@ -16,6 +16,9 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     ['@nuxtjs/pwa', {
+      manifest: {
+        display: 'browser'
+      },
       workbox: {
         cachingExtensions: '@/workbox/workbox-range-request.js',
         runtimeCaching: [
