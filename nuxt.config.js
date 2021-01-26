@@ -6,6 +6,8 @@ const isDev = process.env.NODE_ENV === 'development';
 export default {
   srcDir: './src',
   ssr: true,
+  fullstatic: true,
+
   modern: isDev ? false : 'client',
 
   buildModules: [
@@ -26,7 +28,7 @@ export default {
     '@/modules/svg',
     [
       'nuxt-speedkit', {
-        ignorePerformance: false,
+        ignorePerformance: true,
         fonts: [{
           family: 'Montserrat',
           locals: ['Montserrat Black'],
