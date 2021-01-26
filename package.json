@@ -2,6 +2,10 @@
   "name": "website",
   "version": "1.0.0",
   "private": true,
+  "author": {
+    "name": "Erwin Lorenz",
+    "email": "erwin.lorenz@gmail.com"
+  },
   "contributors": [
     {
       "name": "Erwin Lorenz",
@@ -9,7 +13,8 @@
     },
     {
       "name": "Thorn-Welf Walli",
-      "email": "lammpee@gmail.com"
+      "email": "lammpee@gmail.com",
+      "url": "https://lammpee.de"
     }
   ],
   "scripts": {

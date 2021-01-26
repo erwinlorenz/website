@@ -17,7 +17,16 @@ export default {
     '@nuxtjs/stylelint-module',
     ['@nuxtjs/pwa', {
       manifest: {
-        display: 'browser'
+        name: 'Erwin Lorenz - Art Director',
+        short_name: 'Erwin Lorenz - Art Director',
+        description: 'Erwin Lorenz - Art Director',
+        display: 'browser',
+        background_color: '#000000'
+      },
+      meta: {
+        name: 'Erwin Lorenz - Art Director',
+        appleStatusBarStyle: '#000000',
+        theme_color: '#000000'
       },
       workbox: {
         cachingExtensions: '@/workbox/workbox-range-request.js',
