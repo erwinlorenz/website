@@ -63,11 +63,11 @@ ul {
     }
 
     @media (min-width: 768px) {
-      width: 60px;
+      width: 40px;
     }
 
-    @media (min-width: 1200px) {
-      width: 80px;
+    @media (min-width: 1680px) {
+      width: 60px;
     }
 
     & path {

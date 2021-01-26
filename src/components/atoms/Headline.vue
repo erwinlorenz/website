@@ -29,16 +29,17 @@ export default {
 }
 
 h1 {
-  font-size: calc(41 / 414 * 100vw);
+  font-size: calc(30 / 414 * 100vw);
   text-align: center;
   text-transform: uppercase;
+  user-select: none;
 
   @media (min-width: 568px) {
-    font-size: 41px;
+    font-size: 30px;
   }
 
   @media (min-width: 768px) {
-    font-size: 45px;
+    font-size: 40px;
   }
 }
 </style>

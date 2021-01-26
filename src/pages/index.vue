@@ -1,6 +1,8 @@
 <template>
   <div class="page">
-    <atom-video class="video" :muted="videoMuted" v-bind="video" />
+    <div class="video">
+      <atom-video :muted="videoMuted" v-bind="video" />
+    </div>
     <div class="content">
       <molecule-contacts class="contacts" v-bind="contacts" />
       <atom-sound-button :muted="videoMuted" @muted="videoMuted = $event" />
@@ -30,9 +32,9 @@ export default {
       },
       contacts: {
         items: [
-          { icon: 'mail', url: 'mailto: ' },
-          { icon: 'linkedIn', url: '#' },
-          { icon: 'xing', url: '#' }
+          { icon: 'mail', url: 'mailto: erwin.lorenz@gmail.com' },
+          { icon: 'linkedIn', url: 'https://www.linkedin.com/in/erwin-lorenz-3a2323a2/' },
+          { icon: 'xing', url: 'https://www.xing.com/profile/Erwin_Lorenz/' }
         ]
       },
       video: {
@@ -61,27 +63,30 @@ export default {
   position: relative;
   box-sizing: border-box;
   display: flex;
-  padding: calc(50 / 414 * 100vw);
+  padding: calc(30 / 414 * 100vw);
   color: #fff;
   background: #000;
 
   @media (min-width: 568px) {
-    padding: 50px;
+    padding: 30px;
   }
 
   @media (min-width: 768px) {
-    padding: 75px;
+    padding: 30px;
   }
 
   @media (min-width: 1200px) {
-    padding: 100px;
+    padding: 50px;
+  }
+
+  @media (min-width: 1680px) {
+    padding: 60px;
   }
 }
 
 .content {
   position: relative;
   flex: 1;
-  mix-blend-mode: exclusion;
 }
 
 .video {
@@ -90,6 +95,18 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background: black;
+    opacity: 0.2;
+  }
 }
 
 .contacts {

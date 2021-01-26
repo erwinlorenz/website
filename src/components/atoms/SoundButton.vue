@@ -55,12 +55,8 @@ button {
       width: 40px;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 1680px) {
       width: 60px;
-    }
-
-    @media (min-width: 1200px) {
-      width: 80px;
     }
 
     & path {
