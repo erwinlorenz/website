@@ -37,12 +37,12 @@
     }
   },
   "dependencies": {
-    "@nuxtjs/pwa": "^3.3.4",
-    "@nuxtjs/robots": "^2.4.2",
-    "@nuxtjs/sitemap": "^2.4.0",
+    "@nuxtjs/pwa": "3.3.4",
+    "@nuxtjs/robots": "2.4.2",
+    "@nuxtjs/sitemap": "2.4.0",
     "core-js": "3.6.5",
     "nuxt": "2.14.6",
-    "nuxt-speedkit": "1.0.3",
+    "nuxt-speedkit": "github:GrabarzUndPartner/nuxt-speedkit#feature/picture",
     "postcss-nesting": "7.0.1",
     "vue-svg-loader": "0.16.0",
     "webpack-bundle-analyzer": "4.3.0"

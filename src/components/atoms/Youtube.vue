@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="youtube" :class="{'js--ready':ready}">
     <div>
       <iframe
         :src="src"
@@ -35,7 +35,11 @@ export default {
       default: true
     }
   },
-
+  data () {
+    return {
+      ready: false
+    };
+  },
   computed: {
     src () {
       const options = {
@@ -55,16 +59,25 @@ export default {
 
       return `https://www.youtube-nocookie.com/embed/${this.id}?` + Object.keys(options).map(key => `${key}=${options[String(key)]}`).join('&');
     }
+  },
+  mounted () {
+    this.ready = true;
   }
 };
 </script>
 
 <style lang="postcss" scoped>
 
-div {
+.youtube {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.4s 1s ease-in;
+
+  &.js--ready {
+    opacity: 1;
+  }
 
   &::after {
     position: absolute;
@@ -73,6 +86,7 @@ div {
     display: block;
     width: 100%;
     height: 100%;
+    pointer-events: none;
     content: '';
     background: black;
     opacity: 0.2;
@@ -83,19 +97,16 @@ div {
     top: -100px;
     left: calc((100% - 16 / 9 * 100vh) / 2);
     width: calc(16 / 9 * 100vh);
-    height: calc(100vh + 400px);
+    height: calc(100vh + 200px);
+    overflow: hidden;
 
     & iframe {
       width: 100%;
       height: 100%;
-      pointer-events: none
 
-      /* opacity: 0;
-  transition: opacity 0.4s ease-in;
-
-  &.js--ready {
-    opacity: 1;
-  } */
+      @media (min-width: 1280px) {
+        pointer-events: none;
+      }
     }
   }
 }
