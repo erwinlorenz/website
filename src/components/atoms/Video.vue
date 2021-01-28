@@ -20,15 +20,15 @@ export default {
     },
     loop: {
       type: Boolean,
-      default: false
+      default: true
     },
     autoplay: {
       type: Boolean,
-      default: false
+      default: true
     },
-    muted: {
+    mute: {
       type: Boolean,
-      default: false
+      default: true
     },
     sources: {
       type: Array,

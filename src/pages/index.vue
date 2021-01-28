@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="video">
-      <atom-video :muted="videoMuted" v-bind="video" />
+      <atom-youtube :mute="videoMuted" v-bind="video" />
     </div>
     <div class="content">
       <molecule-contacts class="contacts" v-bind="contacts" />
@@ -13,14 +13,14 @@
 
 <script>
 import MoleculeContacts from '@/components/molecules/Contacts';
-import AtomVideo from '@/components/atoms/Video';
+import AtomYoutube from '@/components/atoms/Youtube';
 import AtomSoundButton from '@/components/atoms/SoundButton';
 import AtomHeadline from '@/components/atoms/Headline';
 
 export default {
   components: {
     MoleculeContacts,
-    AtomVideo,
+    AtomYoutube,
     AtomSoundButton,
     AtomHeadline
   },
@@ -38,14 +38,8 @@ export default {
         ]
       },
       video: {
-        loop: true,
-        autoplay: true,
-        sources: [
-          {
-            src: require('@/assets/videos/210116_Showreel_webseite_EL.mp4')
-          }
-        ],
-        poster: null // require('@/assets/videos/210116_Showreel_webseite_EL_Standbild.jpg')
+        id: 'vHT-ZXZvbVM',
+        autoplay: true
       }
     };
   },
@@ -103,18 +97,6 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-
-  &::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    content: '';
-    background: black;
-    opacity: 0.2;
-  }
 }
 
 .contacts {
