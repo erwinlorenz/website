@@ -21,7 +21,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
+    "start:static": "nuxt start --target static",
+    "generate": "nuxt generate --target static",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "npm run lint:js && npm run lint:style"
@@ -45,7 +46,8 @@
     "nuxt-speedkit": "github:GrabarzUndPartner/nuxt-speedkit#feature/picture",
     "postcss-nesting": "7.0.1",
     "vue-svg-loader": "0.16.0",
-    "webpack-bundle-analyzer": "4.3.0"
+    "webpack-bundle-analyzer": "4.3.0",
+    "youtube-player": "^5.5.2"
   },
   "devDependencies": {
     "@commitlint/cli": "11.0.0",

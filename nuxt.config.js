@@ -14,30 +14,30 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
-    '@nuxtjs/stylelint-module',
-    ['@nuxtjs/pwa', {
-      manifest: {
-        name: 'Erwin Lorenz - Art Director',
-        short_name: 'Erwin Lorenz - Art Director',
-        description: 'Erwin Lorenz - Art Director',
-        display: 'browser',
-        background_color: '#000000'
-      },
-      meta: {
-        name: 'Erwin Lorenz - Art Director',
-        appleStatusBarStyle: '#000000',
-        theme_color: '#000000'
-      },
-      workbox: {
-        cachingExtensions: '@/workbox/workbox-range-request.js',
-        runtimeCaching: [
-          {
-            urlPattern: /\/.*/,
-            handler: 'networkFirst'
-          }
-        ]
-      }
-    }]
+    '@nuxtjs/stylelint-module'
+    // ['@nuxtjs/pwa', {
+    //   manifest: {
+    //     name: 'Erwin Lorenz - Art Director',
+    //     short_name: 'Erwin Lorenz - Art Director',
+    //     description: 'Erwin Lorenz - Art Director',
+    //     display: 'browser',
+    //     background_color: '#000000'
+    //   },
+    //   meta: {
+    //     name: 'Erwin Lorenz - Art Director',
+    //     appleStatusBarStyle: '#000000',
+    //     theme_color: '#000000'
+    //   },
+    //   workbox: {
+    //     cachingExtensions: '@/workbox/workbox-range-request.js',
+    //     runtimeCaching: [
+    //       {
+    //         urlPattern: /\/.*/,
+    //         handler: 'networkFirst'
+    //       }
+    //     ]
+    //   }
+    // }]
   ],
 
   router: {

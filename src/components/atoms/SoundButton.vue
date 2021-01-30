@@ -37,9 +37,6 @@ export default {
 
 <style lang="postcss" scoped>
 button {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   padding: 0;
   cursor: pointer;
   background: none;

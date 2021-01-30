@@ -1,22 +1,41 @@
 <template>
-  <video
-    ref="video"
-    :preload="preload"
-    :loop="loop"
-    :class="{'js--ready':ready}"
-    :poster="poster"
-    :src="currentSource"
-    :muted="muted"
-    @canplay="onCanplay"
-  />
+  <div
+    class="video"
+    :class="{'js--ready':ready,'js--muted':muted}"
+  >
+    <video
+      ref="videoMuted"
+      :autoplay="autoplay"
+      :playsinline="playsinline"
+      :preload="preload"
+      :loop="loop"
+      :poster="played ? null: poster"
+      :src="currentSourceMuted"
+      muted="true"
+      @canplay="onCanplay"
+      @play="onPlay"
+    />
+    <video
+      ref="video"
+      preload="metadata"
+      :loop="loop"
+      :src="currentSource"
+    />
+    <span />
+  </div>
 </template>
 
 <script>
+
 export default {
   props: {
     preload: {
       type: String,
       default: 'metadata'
+    },
+    playsinline: {
+      type: Boolean,
+      default: false
     },
     loop: {
       type: Boolean,
@@ -26,67 +45,89 @@ export default {
       type: Boolean,
       default: true
     },
-    mute: {
+    muted: {
       type: Boolean,
       default: true
+    },
+    mutedSources: {
+      type: Array,
+      default () {
+        return [];
+      }
     },
     sources: {
       type: Array,
       default () {
-        return [
-          {
-            // eslint-disable-next-line no-secrets/no-secrets
-            src: require('@/assets/videos/210116_Showreel_webseite_EL.mp4')
-          }
-        ];
+        return [];
       }
     },
     poster: {
       type: String,
-      default: require('@/assets/videos/210116_Showreel_webseite_EL_Standbild.jpg')
+      default: null
     }
   },
   data () {
-    return { ready: false, currentSource: null };
+    return { ready: false, currentSourceMuted: null, currentSource: null, played: false };
+  },
+  computed: {
+    currentVideo () {
+      return this.muted ? this.$refs.videoMuted : this.$refs.video;
+    }
+  },
+  watch: {
+    muted (value) {
+      let currentTime;
+      if (value) {
+        this.$refs.video.pause();
+        currentTime = this.$refs.video.currentTime;
+        this.$refs.videoMuted.currentTime = currentTime;
+        this.$refs.videoMuted.play();
+      } else {
+        this.$refs.videoMuted.pause();
+        currentTime = this.$refs.videoMuted.currentTime;
+        this.$refs.video.currentTime = currentTime;
+        this.$refs.video.play();
+      }
+    }
   },
   created () {
     this.currentSource = this.sources[0].src;
   },
-  // mounted () {
-  //   // eslint-disable-next-line scanjs-rules/call_addEventListener
-  //   global.addEventListener('resize', this.onResize);
-  //   this.changeSource();
-  // },
-  // destroyed () {
-  //   // eslint-disable-next-line scanjs-rules/call_addEventListener
-  //   global.removeEventListener('resize', this.onResize);
-  // },
+  mounted () {
+    // eslint-disable-next-line scanjs-rules/call_addEventListener
+    global.addEventListener('resize', this.onResize);
+    this.changeSource();
+  },
+  destroyed () {
+    // eslint-disable-next-line scanjs-rules/call_addEventListener
+    global.removeEventListener('resize', this.onResize);
+  },
   methods: {
+    onLoadPoster () {},
     onCanplay () {
-      if (this.autoplay) {
-        // eslint-disable-next-line scanjs-rules/call_setTimeout
-        global.setTimeout(() => {
-          this.$refs.video.play();
-          global.requestAnimationFrame(() => {
-            this.ready = true;
-          });
-        }, 300);
-      } else {
-        this.ready = true;
-      }
+      this.ready = true;
+      // if (this.autoplay) {
+      //   this.ready = true;
+      //   // this.$refs.video.play();
+      // } else {
+      //   this.ready = true;
+      // }
     },
     changeSource () {
+      // this.$refs.video.onplay = () => {
+      //   const currentTime = this.$refs.videoMuted.currentTime;
+      //   this.$refs.video.currentTime = currentTime;
+      // };
       this.currentSource = this.sources.find(source => global.matchMedia(source.media || 'all').matches).src;
+      this.currentSourceMuted = this.mutedSources.find(source => global.matchMedia(source.media || 'all').matches).src;
+    },
+    onPlay () {
+      this.played = true;
     },
     onResize () {
       global.clearTimeout(this.timeout);
       // eslint-disable-next-line scanjs-rules/call_setTimeout
       this.timeout = global.setTimeout(() => {
-        const currentTime = this.$refs.video.currentTime;
-        this.$refs.video.onplay = () => {
-          this.$refs.video.currentTime = currentTime;
-        };
-        this.changeSource();
       }, 400);
     }
   }
@@ -95,15 +136,61 @@ export default {
 
 <style lang="postcss" scoped>
 
+.video {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    content: '';
+    background: black;
+    opacity: 0.2;
+  }
+}
+
+span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(12px);
+  transition: backdrop-filter 0.35s ease-in;
+}
+
+.video__poster {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.js--ready {
+  & span {
+    backdrop-filter: none;
+  }
+}
+
 video {
+  position: absolute;
+  top: 0;
+  left: 0;
   object-fit: cover;
   width: 100%;
   height: 100%;
-  opacity: 0;
-  transition: opacity 0.4s ease-in;
+}
 
-  &.js--ready {
-    opacity: 1;
+.js--muted {
+  & video + video {
+    opacity: 0;
   }
 }
 
