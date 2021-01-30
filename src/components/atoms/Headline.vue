@@ -1,26 +1,14 @@
 <template>
-  <component
-    :is="tag"
-    v-font="[
-      $getFont('Montserrat', 900),
-      $getFont('Montserrat', 300, 'normal', {selector:'span'})]"
-    v-html="content"
-  />
+  <h1>
+    <span
+      v-font="[
+        $getFont('Montserrat', 900, 'normal', {selector:'strong'}),
+        $getFont('Montserrat', 300)]"
+    >
+      <slot><strong>Headline</strong><br> Content</slot>
+    </span>
+  </h1>
 </template>
-<script>
-export default {
-  props: {
-    tag: {
-      type: String,
-      default: 'h1'
-    },
-    content: {
-      type: String,
-      default: 'Headline <br><span>Headline</span>'
-    }
-  }
-};
-</script>
 
 <style lang="postcss" scoped>
 * {

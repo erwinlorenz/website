@@ -7,7 +7,9 @@
     <div class="content">
       <molecule-contacts class="contacts" v-bind="contacts" />
       <atom-sound-button class="sound-button" :muted="videoMuted" @muted="videoMuted = $event" />
-      <atom-headline critical class="headline" v-bind="headline" />
+      <atom-headline critical class="headline">
+        <strong>{{ headline[0] }}</strong> <br>{{ headline[1] }}
+      </atom-headline>
     </div>
   </div>
 </template>
@@ -30,9 +32,7 @@ export default {
     const { default: poster } = await import('@/assets/videos/placeholder');
 
     return {
-      headline: {
-        content: 'Erwin Lorenz<br><span>Art Director</span>'
-      },
+      headline: ['Erwin Lorenz', 'Art Director'],
       contacts: {
         items: [
           { icon: 'mail', url: 'mailto: erwin.lorenz@gmail.com', title: 'Mail' },
@@ -85,9 +85,11 @@ export default {
       }
     };
   },
+
   data () {
     return {
-      videoMuted: true
+      videoMuted: true,
+      headline: ['headline', 'subline']
     };
   }
 };

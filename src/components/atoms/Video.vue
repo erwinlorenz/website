@@ -18,7 +18,7 @@
     <video
       ref="video"
       :playsinline="playsinline"
-      preload="metadata"
+      :preload="preload"
       :loop="loop"
       :src="currentSource"
     />
