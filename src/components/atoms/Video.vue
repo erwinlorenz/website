@@ -21,7 +21,6 @@
       :loop="loop"
       :src="currentSource"
     />
-    <span />
   </div>
 </template>
 
@@ -106,18 +105,8 @@ export default {
     onLoadPoster () {},
     onCanplay () {
       this.ready = true;
-      // if (this.autoplay) {
-      //   this.ready = true;
-      //   // this.$refs.video.play();
-      // } else {
-      //   this.ready = true;
-      // }
     },
     changeSource () {
-      // this.$refs.video.onplay = () => {
-      //   const currentTime = this.$refs.videoMuted.currentTime;
-      //   this.$refs.video.currentTime = currentTime;
-      // };
       this.currentSource = this.sources.find(source => global.matchMedia(source.media || 'all').matches).src;
       this.currentSourceMuted = this.mutedSources.find(source => global.matchMedia(source.media || 'all').matches).src;
     },
@@ -128,6 +117,11 @@ export default {
       global.clearTimeout(this.timeout);
       // eslint-disable-next-line scanjs-rules/call_setTimeout
       this.timeout = global.setTimeout(() => {
+        const currentTime = this.currentVideo.currentTime;
+        this.currentVideo.onplay = () => {
+          this.currentVideo.currentTime = currentTime;
+        };
+        this.changeSource();
       }, 400);
     }
   }
@@ -151,32 +145,13 @@ export default {
     background: black;
     opacity: 0.2;
   }
-}
 
-span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(12px);
-  transition: backdrop-filter 0.35s ease-in;
-}
-
-.video__poster {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
+  filter: blur(10px);
+  transition: filter 0.35s ease-in;
 }
 
 .js--ready {
-  & span {
-    backdrop-filter: none;
-  }
+  filter: none;
 }
 
 video {
@@ -193,5 +168,4 @@ video {
     opacity: 0;
   }
 }
-
 </style>
